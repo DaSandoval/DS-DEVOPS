@@ -7,14 +7,12 @@ services:
       - "5000:5000"
     volumes:
       - ./jenkins:/var/jenkins_home
-
   gocd_server:
     image: "registry.jala.info/devops/gocd/gocd-server:v18.5.0"
     ports:
       - "8153:8153"
     links:
       - gocd_agent
-
   gocd_agent:
     image: "registry.jala.info/devops/gocd/gocd-agent-alpine-3.7:v18.5.0"
     environment:
@@ -22,11 +20,7 @@ services:
     volumes:
       - ./godata:/godata
       - ./go:/home/go
-
   sonarqube:
     image: "registry.jala.info/devops/sonarqube:6.7.4-alpine"
     ports:
       - "9000:9000"
-      - "9092:9092"
-    links:
-      - gocd_agent
