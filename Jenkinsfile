@@ -4,21 +4,23 @@ pipeline{
   stages{
     stage('Build'){
       steps{
-	echo "Building"
+	sh './quickstart/gradlew clear assemble -p quickstart'
       }
     }
   }
   stages{
     stage('Testing'){
       steps{
-        echo "Running Unit Test"
+        sh './quickstart gradlew test -p quickstart'
+        junit './build/report/tests/test/*.html'
       }
     }
   }
   stages{
     stage('Publish'){
       steps{
-	echo "Publishing artifact"
+        sh './quickstart/gradlew uploadArchives -p quickstart'
+        archiveArtifacts artifacts: './repos/*.jar'
       } 
     }
   }
