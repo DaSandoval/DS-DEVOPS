@@ -64,7 +64,7 @@ pipelines:
               tabs:
                 owasp: html/dependency-check-report.html
   
-  daweb-quickstart-ci:
+  da-webapplication-ci:
     group: Application
     materials:
       repo:
